@@ -10,7 +10,7 @@ conn.connection.on('connected', (err) => {
     if (err) {
         console.log('error while connecting database')
     } else {
-        console.log('database connected successfully')
+        console.log('database connected successfull')
     }
 })
 
