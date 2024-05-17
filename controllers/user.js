@@ -159,3 +159,36 @@ exports.createNewPassword = async (req, res) => {
     }
 
 }
+
+
+exports.changeAddress = async (req, res) => {
+    try {
+        const token = req.headers.token;
+        console.log(token)
+        const varifyToken = jwt.verify(token, secretKey);
+        const user = await model.findOne({ _id: varifyToken._id });
+        const { pincode, address, city, state } = req.body;
+        let combineAddress = `${address},${pincode},${city},${state}`
+        const changeAddres = await model.findByIdAndUpdate({ _id: user._id }, { address: combineAddress });
+        if (changeAddres) {
+            res.send({
+                success: true,
+                message: "Address change succssfully"
+            })
+        } else {
+            res.send({
+                success: false,
+                message: "can't change address"
+            })
+        }
+
+
+    }
+    catch (err) {
+        res.send({
+            success: false,
+            message: "can't change address"
+
+        })
+    }
+}

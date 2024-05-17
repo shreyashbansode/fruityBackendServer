@@ -17,7 +17,8 @@ const createUser = new mongoose.Schema({
             }
         }
     ],
-    otp: Number
+    otp: Number,
+    address: String
 
 })
 

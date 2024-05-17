@@ -16,7 +16,8 @@ conn.connection.on('connected', (err) => {
 
 app.use(express.json());
 app.use(cors());
-app.use('/user', require('./routes/user'))
+app.use('/user', require('./routes/user'));
+
 app.use('/product', require('./routes/product'))
 app.use('/cart', require('./routes/cart'))
 app.use(express.static('public'));

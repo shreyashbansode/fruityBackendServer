@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const secretKey = 'mynameisshreyashbansode';
 const model = require('../models/user')
 
-exports.Auth = async (req, res) => {
+const Auth = async (req, res, next) => {
     try {
         const token = req.headers.token;
         const varifyToken = jwt.verify(token, secretKey);
@@ -13,6 +13,7 @@ exports.Auth = async (req, res) => {
                 message: 'user varify',
                 data: user
             })
+            next();
         } else {
             res.send({
                 success: false,
@@ -26,4 +27,8 @@ exports.Auth = async (req, res) => {
             message: 'cant varify login'
         })
     }
+}
+
+module.exports = {
+    Auth
 }

@@ -30,3 +30,27 @@ exports.addToCart = async (req, res) => {
         })
     }
 }
+
+exports.deleteCartProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteProduct = await model.findByIdAndDelete({ _id: id });
+        if (deleteProduct) {
+            res.send({
+                success: true,
+                message: 'product delete successfully'
+            })
+        } else {
+            res.send({
+                success: false,
+                message: "Product can't delete"
+            })
+        }
+    }
+    catch (err) {
+        res.send({
+            success: false,
+            message: 'failed to delete cart product '
+        })
+    }
+}
