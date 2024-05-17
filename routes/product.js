@@ -14,5 +14,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 routes.post('/createProduct', upload.single('image'), require('../controllers/product').createProduct);
+routes.get('/getProduct', require('../controllers/product').getProduct);
+routes.get('/getProduct/:id', require('../controllers/product').getPerticularProduct);
+routes.delete('/deleteProduct/:id', require('../controllers/product').deleteProduct);
 
 module.exports = routes;
